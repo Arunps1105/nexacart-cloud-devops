@@ -13,7 +13,7 @@ pipeline {
         stage('Environment') {
             steps {
                 withCredentials([
-                    string(credentialsId: 'orderflow1-env-b64', variable: 'ENV_B64')
+                    string(credentialsId: 'orderflow1-env', variable: 'ENV_B64')
                 ]) {
                     sh 'echo "$ENV_B64" | base64 -d > .env'
                 }
