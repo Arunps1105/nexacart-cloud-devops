@@ -71,7 +71,8 @@ function Login({ onLogin, onRegister }) {
           ◆
         </div>
 
-        <h1>OrderFlow CI/CD v3</h1>
+        <h1>OrderFlow CI/CD v4</h1>
+
 
         <p className="login-subtitle">
           Order Management System
@@ -80,7 +81,7 @@ function Login({ onLogin, onRegister }) {
         <h2>Welcome back</h2>
 
         <p className="login-description">
-          Sign in to manage your orders and inventory.
+          Sign in to manage your orders and inventory sir.
         </p>
 
         {error && (
