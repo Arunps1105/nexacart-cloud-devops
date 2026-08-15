@@ -71,7 +71,7 @@ function Login({ onLogin, onRegister }) {
           ◆
         </div>
 
-        <h1>OrderFlow</h1>
+        <h1>OrderFlow CI/CD</h1>
 
         <p className="login-subtitle">
           Order Management System
