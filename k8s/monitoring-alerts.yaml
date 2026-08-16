@@ -1,0 +1,46 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: nexacart-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: nexacart.rules
+      rules:
+        - alert: NexaCartBackendDown
+          expr: kube_deployment_status_replicas_available{namespace="nexacart",deployment="backend"} < 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "NexaCart backend is down"
+            description: "The NexaCart backend has no available replicas for more than 2 minutes."
+
+        - alert: NexaCartFrontendDown
+          expr: kube_deployment_status_replicas_available{namespace="nexacart",deployment="frontend"} < 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "NexaCart frontend is down"
+            description: "The NexaCart frontend has no available replicas for more than 2 minutes."
+
+        - alert: NexaCartPostgresDown
+          expr: kube_deployment_status_replicas_available{namespace="nexacart",deployment="postgres"} < 1
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "NexaCart PostgreSQL is down"
+            description: "The NexaCart PostgreSQL workload has no available replicas for more than 2 minutes."
+
+        - alert: NexaCartHighPodRestarts
+          expr: increase(kube_pod_container_status_restarts_total{namespace="nexacart"}[10m]) > 3
+          for: 2m
+          labels:
+            severity: warning
+          annotations:
+            summary: "NexaCart pod restarting frequently"
+            description: "A NexaCart container restarted more than 3 times in the last 10 minutes."

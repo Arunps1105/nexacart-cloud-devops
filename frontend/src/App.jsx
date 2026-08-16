@@ -16,7 +16,7 @@ import MyOrders from "./components/MyOrders";
 
 
 const API =
-  `http://${window.location.hostname}:8000/api`;
+  "/api";
 
 
 function App() {

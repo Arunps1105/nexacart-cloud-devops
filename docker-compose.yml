@@ -2,7 +2,7 @@ services:
 
   db:
     image: postgres:18-alpine
-    container_name: orderflow-db
+    container_name: nexacart-db
 
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
@@ -24,13 +24,12 @@ services:
 
     restart: unless-stopped
 
-
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
 
-    container_name: orderflow-backend
+    container_name: nexacart-backend
 
     environment:
       DB_NAME: ${DB_NAME}
@@ -56,13 +55,12 @@ services:
 
     restart: unless-stopped
 
-
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
 
-    container_name: orderflow-frontend
+    container_name: nexacart-frontend
 
     depends_on:
       - backend
@@ -71,7 +69,6 @@ services:
       - "5173:80"
 
     restart: unless-stopped
-
 
 volumes:
   postgres_data:

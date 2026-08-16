@@ -1,8 +1,9 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://13.203.85.168:8000/api",
+  baseURL: "/api",
 });
+
 
 api.interceptors.request.use((config) => {
   const token = sessionStorage.getItem(
