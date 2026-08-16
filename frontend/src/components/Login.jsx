@@ -71,7 +71,7 @@ function Login({ onLogin, onRegister }) {
           ◆
         </div>
 
-        <h1>OrderFlow CI/CD v4</h1>
+        <h1>NexaCart CI/CD v5</h1>
 
 
         <p className="login-subtitle">
