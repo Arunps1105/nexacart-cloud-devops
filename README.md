@@ -1,10 +1,14 @@
-# OrderFlow CI/CD – Order Management System
+ # NexaCart CI/CD – Cloud DevOps Project
 
-OrderFlow is a containerized order management application deployed on AWS EC2 with an automated CI/CD pipeline using GitHub, Jenkins, Docker, and SonarQube.
+NexaCart is a containerized order management application deployed on **AWS EKS** with an automated **CI/CD and GitOps workflow** using GitHub Actions, Amazon ECR, Kubernetes, and Argo CD.
+
+The project also includes Kubernetes monitoring and alerting using **Prometheus, Grafana, and Alertmanager**.
+
+---
 
 ## 🚀 Project Overview
 
-The application provides:
+NexaCart provides:
 
 - User authentication
 - Product management
@@ -13,50 +17,66 @@ The application provides:
 - Order history
 - Order status management
 - Admin dashboard
-- User and role management
+- User management
+- REST API backend
+- React frontend
 
-## 🛠️ Technologies Used
+The application is containerized with Docker and deployed to Kubernetes running on Amazon EKS.
 
-### Application
-- React
-- Django
-- JavaScript
-- Python
+---
 
-### DevOps
-- Git
-- GitHub
-- Jenkins
-- GitHub Webhooks
-- Docker
-- Docker Compose
-- SonarQube
-
-### Cloud
-- AWS EC2
-- AWS Security Groups
-
-## 🔄 CI/CD Architecture
+## 🏗️ Architecture
 
 ```text
-Developer
-   |
-   v
-GitHub Repository
-   |
-   | Push
-   v
-GitHub Webhook
-   |
-   v
-Jenkins
-   |
-   | Build / Test / Deploy
-   v
-Docker / Docker Compose
-   |
-   v
-AWS EC2
-   |
-   v
-OrderFlow Application
+                        Developer
+                            |
+                            v
+                       GitHub Repo
+                            |
+                            v
+                    GitHub Actions
+                   /       |       \
+                  /        |        \
+             Build      Test      Docker
+                                   |
+                                   v
+                              Amazon ECR
+                            /           \
+                           /             \
+                    Backend Image    Frontend Image
+                           \             /
+                            \           /
+                             v         v
+                         Argo CD / GitOps
+                                |
+                                v
+                         Amazon EKS Cluster
+                                |
+                    +-----------+-----------+
+                    |                       |
+                    v                       v
+               Frontend Pods           Backend Pods
+                    |                       |
+                    |                       v
+                    |                 PostgreSQL
+                    |
+                    v
+               AWS ALB Ingress
+                    |
+                    v
+                  Users
+
+
+Monitoring:
+
+Kubernetes
+    |
+    v
+Prometheus
+    |
+    +------> Grafana Dashboards
+    |
+    +------> Alertmanager
+                  |
+                  v
+                Email
