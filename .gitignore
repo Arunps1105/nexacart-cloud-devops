@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *.pyo
-
+terraform/tfplan
 # Virtual environments
 venv/
 .venv/
@@ -42,3 +42,9 @@ dist/
 
 # Docker
 docker-data/
+# Local secrets
+terraform/*secret*.json
+k8s/*secret*.local.yaml
+*.secret.json
+
+terraform/tfplan
