@@ -48,3 +48,5 @@ k8s/*secret*.local.yaml
 *.secret.json
 
 terraform/tfplan
+
+nexacart-backup.sql
